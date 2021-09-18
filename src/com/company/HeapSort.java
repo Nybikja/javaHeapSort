@@ -4,11 +4,10 @@ import java.util.Arrays;
 
 public class HeapSort {
     private final int[] arr;
-    private SortOrder order = SortOrder.ASCENDING;
+    private SortOrder order = SortOrder.DESCENDING;
     private double exTime;
     private long swaps = 0;
     private long comparisons = 0;
-    private int[] arrSorted;
 
     public HeapSort(int[] arr) {
         this.arr = arr;
@@ -18,11 +17,7 @@ public class HeapSort {
         this.order = order;
     }
 
-    public int[] getArrSorted() {
-        return arrSorted;
-    }
-
-    public int[] check () {
+    void check () {
 
         if (order == SortOrder.ASCENDING) {
             for (int i = 1; i < arr.length; i++)
@@ -45,10 +40,9 @@ public class HeapSort {
             }
 
         }
-        return arr;
     }
 
-    private void heapSort() {
+    void heapSort() {
         long startTime = System.nanoTime();
         down(0, arr.length);
 
@@ -65,7 +59,7 @@ public class HeapSort {
         exTime = (endTime - startTime) / (double) 1000000;
     }
 
-    private void down(int root, int size) {
+    void down(int root, int size) {
         int left = root * 2 + 1;
         int right = root * 2 + 2;
         int x = root;
@@ -98,7 +92,7 @@ public class HeapSort {
         down(x, size);
     }
 
-    private void swap(int a, int b) {
+    void swap(int a, int b) {
         int x = arr[a];
         arr[a] = arr[b];
         arr[b] = x;
@@ -133,3 +127,7 @@ public class HeapSort {
     }
 }
 
+enum SortOrder{
+    ASCENDING,
+    DESCENDING
+}
